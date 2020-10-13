@@ -20,7 +20,7 @@ class SequenceTagger:
         for entity in response[0]:
             entities.append({
                 "text": entity["String"],
-                "start_pos": entity["Position"][0],
+                "start_pos": entity["Position"][0] - 1,
                 "end_pos": entity["Position"][1],
                 "type": entity["Type"],
                 "confidence": entity["Probability"]
