@@ -17,7 +17,7 @@ class SequenceTagger:
         text -- text to get entities from
         
         Keyword arguments:
-        entity_types -- list of entity types to include
+        entity_types -- list of entity types to include (see https://reference.wolfram.com/language/guide/TextContentTypes.html)
         """
         forms = wl.System.Automatic
         if "entity_types" in kwargs:
