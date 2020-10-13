@@ -12,9 +12,17 @@ class SequenceTagger:
         """Stop the Wolfram Kernel associated with this tagger"""
         self.session.stop()
 
-    def predict(self, text: str) -> dict:
-        """Get text entities in text"""
-        expr = wl.System.TextContents(text, wl.System.Automatic, wl.System.All)
+    def predict(self, text: str, **kwargs) -> dict:
+        """Get text entities in text
+        text -- text to get entities from
+        
+        Keyword arguments:
+        entity_types -- list of entity types to include
+        """
+        forms = wl.System.Automatic
+        if "entity_types" in kwargs:
+            forms = wl.System.List(*kwargs["entity_types"])
+        expr = wl.System.TextContents(text, forms, wl.System.All)
         response = self.session.evaluate(expr)
         entities = []
         for entity in response[0]:
